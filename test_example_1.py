@@ -1,4 +1,4 @@
-from subprocess import call
+
 from pytest import mark
 
 
