@@ -17,9 +17,9 @@ pip install pip
 
 ### Installing
 Install the mandatory modules using 
-'''
+```
 pip install -r requirements.txt
-'''
+```
 
 ### Executing program
 
