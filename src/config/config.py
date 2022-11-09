@@ -13,7 +13,7 @@ class Config:
 
     def __init__(self, config_providers) -> None:
         """
-        Initialize class with config_providerclear
+        Initialize class with config_providers
         Args:
             config_provider - Chosen config provider
         """

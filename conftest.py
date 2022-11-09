@@ -1,7 +1,9 @@
+from datetime import datetime
+
 from pytest import fixture
+
 from src.config.config import config
 from src.models.user_model import User
-from datetime import datetime
 
 
 @fixture(scope="class")

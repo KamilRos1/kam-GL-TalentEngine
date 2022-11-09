@@ -1,4 +1,5 @@
 import pytest
+
 from src.config.config import config
 
 
@@ -15,3 +16,8 @@ class TestsFixtures:
         print(user)
         expected = name
         assert user.name == expected, f"User name {user.name} should be {expected} "
+
+    @pytest.mark.parametrize("name, surname, login", [["John", "Smith", "J.Smith"]])
+    def test_password_generator(self, user):
+        user.generate_password()
+        assert user.password is not None, "Password was not generated"

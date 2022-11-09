@@ -8,6 +8,7 @@ class User(object):
         self.name = name
         self.surname = surname
         self.login = login
+        self.password = None
         print("User Created")
 
     def __str__(self):
