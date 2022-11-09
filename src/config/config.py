@@ -1,7 +1,9 @@
+import sys
 from typing import Any
-from JSONConfigProvider import JSONConfigProvider
-from OSConfigProvider import OSConfigProvider
-from AWSConfigProvider import AWSConfigProvider
+
+sys.path.append("C:/Users/kamil.roslan/Desktop/kam-GL-TalentEngine")
+from src.providers.JSONConfigProvider import JSONConfigProvider
+from src.providers.OSConfigProvider import OSConfigProvider
 
 
 class Config:
@@ -11,7 +13,7 @@ class Config:
 
     def __init__(self, config_providers) -> None:
         """
-        Initialize class with config_provider
+        Initialize class with config_providerclear
         Args:
             config_provider - Chosen config provider
         """
@@ -42,3 +44,6 @@ class Config:
                 self.conf_dict[item_name] = value
                 return
         raise ValueError(f"{item_name} name is missing in config providers")
+
+
+config = Config([JSONConfigProvider, OSConfigProvider])

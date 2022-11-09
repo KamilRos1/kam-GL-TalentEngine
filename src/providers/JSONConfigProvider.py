@@ -1,6 +1,7 @@
-from BaseProvider import BaseProviderClass
-from typing import Any
 import json
+from typing import Any
+
+from src.providers.BaseProvider import BaseProviderClass
 
 
 class JSONConfigProvider(BaseProviderClass):
