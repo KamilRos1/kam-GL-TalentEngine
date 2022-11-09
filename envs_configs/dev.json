@@ -1,0 +1,4 @@
+{
+    "BASE_URL": "google.com",
+    "SQL_CONNECTION_STRING": "sql://username:ip:db_name_example"
+}
