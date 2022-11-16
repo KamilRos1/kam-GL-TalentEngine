@@ -1,20 +1,22 @@
-from BaseProvider import BaseProviderClass
+import os
 from typing import Any
 
+from src.providers.BaseProvider import BaseProviderClass
 
-class AWSConfigProvider(BaseProviderClass):
+
+class OSConfigProvider(BaseProviderClass):
     """
-    Provider for AWS system (if we had any)
+    Class to provide data from Operating System
     """
 
     @staticmethod
     def get(item_name) -> Any:
         """
-        Gets value from AWS
+        Gets value from OS
         Args:
             item_name: Key for searching
         Returns:
             Key's value
         """
-        value = "AWS_SECRETS_VALUE"
+        value = os.getenv(item_name)
         return value

@@ -28,20 +28,14 @@ To execute tests type
 pytest
 ```
 
+## Before commit
+Sort and format your code using 
+```
+black .
+isort .
+```
 
 ## Authors
 
 Kamil Roslan
 kamil.roslan@globallogic.com
-
-## Version History
-See [commit change]()
-* 0.3
-    * Added config.py file 
-    * Added JSON, OS and AWS provider
-* 0.2
-    * Added simple possitive and negative tests
-    * Changes to repository structure
-* 0.1
-    * Initial Release
-
