@@ -1,4 +1,7 @@
 {
     "BASE_URL": "google.com",
-    "SQL_CONNECTION_STRING": "sql://username:ip:db_name_example"
+    "SQL_CONNECTION_STRING": "sql://username:ip:db_name_example",
+    "TRELLO_BASE_URL": "https://api.trello.com/1",
+    "API_KEY": "c9251165fe5fec1ff65acfd73d9f4ba5",
+    "TOKEN": "0073ae586f93a957e5a3fd99316643844f78ee1c276e66a76577bbeb57e12142"
 }
