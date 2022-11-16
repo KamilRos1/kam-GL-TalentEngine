@@ -1,6 +1,6 @@
 #files
 sandbox.py
-env_configs/dev.json
+envs_configs/dev.json
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
