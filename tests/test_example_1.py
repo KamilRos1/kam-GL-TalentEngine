@@ -1,6 +1,7 @@
 from pytest import mark
 
 
+@mark.homework1
 class TestHomeworks:
     def test_positive_int(self):
         num_1 = 5

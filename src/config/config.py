@@ -21,6 +21,8 @@ class Config:
         self.conf_dict = {}
         self._register("BASE_URL")
         self._register("SQL_CONNECTION_STRING")
+        self._register("API_KEY")
+        self._register("TOKEN")
 
     def get(self, item_name: str) -> Any:
         """
