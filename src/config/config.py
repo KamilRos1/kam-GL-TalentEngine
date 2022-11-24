@@ -23,6 +23,9 @@ class Config:
         self._register("SQL_CONNECTION_STRING")
         self._register("API_KEY")
         self._register("TOKEN")
+        self._register("GITHUB_LOGIN")
+        self._register("GITHUB_PASSWORD")
+        self._register("URL_GITHUB_UI")
 
     def get(self, item_name: str) -> Any:
         """

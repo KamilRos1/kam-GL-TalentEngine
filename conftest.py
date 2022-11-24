@@ -1,8 +1,15 @@
 from datetime import datetime
+
 from pytest import fixture
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
+from src.applications.github_ui import GithubUi
+from src.applications.trello_API import TrelloAPI
 from src.config.config import config
 from src.models.user_model import User
-from src.applications.trello_API import TrelloAPI
 
 
 @fixture(scope="class")
@@ -43,8 +50,47 @@ def create_trello_instance(request):
 
 
 @fixture
-def create_trello_board(request, create_trello_instance):
+def create_trello_board(create_trello_instance):
     trello = create_trello_instance
     board_id, name = trello.post_new_board("temBoard")
     yield board_id, name
     trello.delete_board(board_id)
+
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--browser",
+        action="store",
+        choices=["chrome", "firefox"],
+        default="chrome",
+        help="choose firefox or chrome",
+    )
+
+
+@fixture(scope="function")
+def browser_webdriver(request):
+    browser = request.config.getoption("--browser")
+    if browser == "chrome":
+        service_obj = Service(ChromeDriverManager().install())
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option("excludeSwitches", ["enable-logging"])
+        driver = webdriver.Chrome(service=service_obj, options=options)
+    elif browser == "firefox":
+        service_obj = FirefoxService(GeckoDriverManager().install())
+        driver = webdriver.Firefox(service=service_obj)
+    request.cls.driver = driver
+    yield driver
+    driver.quit()
+
+
+@fixture
+def github_login(browser_webdriver):
+    github_ui = GithubUi(
+        url=config.conf_dict["URL_GITHUB_UI"], driver=browser_webdriver
+    )
+    github_ui.go_to_login()
+    github_ui.login(
+        config.conf_dict["GITHUB_LOGIN"],
+        config.conf_dict["GITHUB_PASSWORD"],
+    )
+    yield github_ui
