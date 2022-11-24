@@ -31,9 +31,9 @@ class TestsGithubLogin:
         )
         home_page.go_to_login()
         home_page.login(Github_data.wrong_login, Github_data.wrong_password)
-        assert home_page.login_error_message().checkVisibility()
+        assert home_page.login_error_message.checkVisibility()
 
     def test_logout(self, github_login):
-        github_login.avatar_menu_dropdown().click()
+        github_login.avatar_menu_dropdown.click()
         github_login.find_element_in_dropdown("Sign out").click()
         assert self.driver.title == Github_data.home_page_title
