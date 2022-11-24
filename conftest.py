@@ -84,8 +84,10 @@ def browser_webdriver(request):
 
 
 @fixture
-def github_login(chrome_webdriver):
-    github_ui = GithubUi(url=config.conf_dict["URL_GITHUB_UI"], driver=chrome_webdriver)
+def github_login(browser_webdriver):
+    github_ui = GithubUi(
+        url=config.conf_dict["URL_GITHUB_UI"], driver=browser_webdriver
+    )
     github_ui.go_to_login()
     github_ui.login(
         config.conf_dict["GITHUB_LOGIN"],
