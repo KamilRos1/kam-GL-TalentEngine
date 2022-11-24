@@ -5,7 +5,7 @@ from src.data.github_data import Github_data
 
 
 @mark.githubLogin
-@mark.usefixtures("configuration", "chrome_webdriver")
+@mark.usefixtures("configuration", "browser_webdriver")
 class TestsGithubLogin:
     def test_homepage(self):
         home_page = GithubUi(

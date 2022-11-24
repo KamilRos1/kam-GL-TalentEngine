@@ -4,7 +4,8 @@ from pytest import fixture
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
 from src.applications.github_ui import GithubUi
 from src.applications.trello_API import TrelloAPI
 from src.config.config import config
@@ -56,10 +57,27 @@ def create_trello_board(create_trello_instance):
     trello.delete_board(board_id)
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--browser",
+        action="store",
+        choices=["chrome", "firefox"],
+        default="chrome",
+        help="choose firefox or chrome",
+    )
+
+
 @fixture(scope="function")
-def chrome_webdriver(request):
-    service_obj = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service_obj)
+def browser_webdriver(request):
+    browser = request.config.getoption("--browser")
+    if browser == "chrome":
+        service_obj = Service(ChromeDriverManager().install())
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option("excludeSwitches", ["enable-logging"])
+        driver = webdriver.Chrome(service=service_obj, options=options)
+    elif browser == "firefox":
+        service_obj = FirefoxService(GeckoDriverManager().install())
+        driver = webdriver.Firefox(service=service_obj)
     request.cls.driver = driver
     yield driver
     driver.quit()
