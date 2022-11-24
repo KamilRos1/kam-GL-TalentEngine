@@ -1,15 +1,10 @@
 from datetime import datetime
-
 from pytest import fixture
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.firefox import GeckoDriverManager
-from src.applications.github_ui import GithubUi
+from src.page_objects.github_home_page import GithubHomePage
 from src.applications.trello_API import TrelloAPI
 from src.config.config import config
 from src.models.user_model import User
+from src.providers.driver_provider.driver_provider import DriverProvider
 
 
 @fixture(scope="class")
@@ -61,36 +56,30 @@ def pytest_addoption(parser):
     parser.addoption(
         "--browser",
         action="store",
-        choices=["chrome", "firefox"],
+        choices=["chrome", "firefox", "edge"],
         default="chrome",
-        help="choose firefox or chrome",
+        help="Browser not supported, use chrome, firefox or edge",
     )
 
 
 @fixture(scope="function")
 def browser_webdriver(request):
     browser = request.config.getoption("--browser")
-    if browser == "chrome":
-        service_obj = Service(ChromeDriverManager().install())
-        options = webdriver.ChromeOptions()
-        options.add_experimental_option("excludeSwitches", ["enable-logging"])
-        driver = webdriver.Chrome(service=service_obj, options=options)
-    elif browser == "firefox":
-        service_obj = FirefoxService(GeckoDriverManager().install())
-        driver = webdriver.Firefox(service=service_obj)
+    driver = DriverProvider.get_driver(browser)
     request.cls.driver = driver
+    driver.maximize_window()
     yield driver
     driver.quit()
 
 
 @fixture
 def github_login(browser_webdriver):
-    github_ui = GithubUi(
+    github_home_page = GithubHomePage(
         url=config.conf_dict["URL_GITHUB_UI"], driver=browser_webdriver
     )
-    github_ui.go_to_login()
-    github_ui.login(
+    github_home_page.go_to_login()
+    github_home_page.login(
         config.conf_dict["GITHUB_LOGIN"],
         config.conf_dict["GITHUB_PASSWORD"],
     )
-    yield github_ui
+    yield github_home_page
