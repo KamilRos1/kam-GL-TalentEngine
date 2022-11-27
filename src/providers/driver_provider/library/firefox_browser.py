@@ -1,9 +1,11 @@
+from selenium import webdriver
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
-from selenium import webdriver
+
+from src.providers.driver_provider.base_provider import BaseProvider
 
 
-class FirefoxBrowser:
+class FirefoxBrowser(BaseProvider):
     options = None
 
     @classmethod

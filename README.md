@@ -27,6 +27,16 @@ To execute tests type
 ```
 pytest
 ```
+To execute tests in specific browser use ```--browser``` flag
+ ```
+pytest -- browser=firefox
+```
+Available browsers:
+- chrome
+- firefox
+- edge
+
+If browser flag not added, tests will be executed in Chrome
 
 ## Before commit
 Sort and format your code using 

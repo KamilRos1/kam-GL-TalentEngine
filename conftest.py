@@ -1,19 +1,18 @@
 from datetime import datetime
+
 from pytest import fixture
-from src.page_objects.github_home_page import GithubHomePage
+
 from src.applications.trello_API import TrelloAPI
 from src.config.config import config
+from src.data.github_data import Github_data
 from src.models.user_model import User
+from src.page_objects.login_page import LoginPage
 from src.providers.driver_provider.driver_provider import DriverProvider
 
 
 @fixture(scope="class")
 def configuration(request):
     print("Configuration added")
-
-    print(
-        f"Base Url: {config.conf_dict['BASE_URL']}\nSQL: {config.conf_dict['SQL_CONNECTION_STRING']}\n"
-    )
     request.cls.config = config
     yield config
 
@@ -74,12 +73,10 @@ def browser_webdriver(request):
 
 @fixture
 def github_login(browser_webdriver):
-    github_home_page = GithubHomePage(
-        url=config.conf_dict["URL_GITHUB_UI"], driver=browser_webdriver
-    )
-    github_home_page.go_to_login()
-    github_home_page.login(
+    login_page = LoginPage(url=Github_data.login_page_url, driver=browser_webdriver)
+    login_page.go_to()
+    login_page.login(
         config.conf_dict["GITHUB_LOGIN"],
         config.conf_dict["GITHUB_PASSWORD"],
     )
-    yield github_home_page
+    yield

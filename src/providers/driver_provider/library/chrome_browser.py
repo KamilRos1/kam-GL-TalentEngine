@@ -1,9 +1,11 @@
+from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium import webdriver
+
+from src.providers.driver_provider.base_provider import BaseProvider
 
 
-class ChromeBrowser:
+class ChromeBrowser(BaseProvider):
     options = webdriver.ChromeOptions()
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
 

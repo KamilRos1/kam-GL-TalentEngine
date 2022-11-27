@@ -19,8 +19,6 @@ class Config:
         """
         self.config_providers = config_providers
         self.conf_dict = {}
-        self._register("BASE_URL")
-        self._register("SQL_CONNECTION_STRING")
         self._register("API_KEY")
         self._register("TOKEN")
         self._register("GITHUB_LOGIN")
