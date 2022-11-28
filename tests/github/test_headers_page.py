@@ -4,7 +4,7 @@ from src.data.github_data import Github_data
 from src.page_objects.header_page import HeadersPage
 
 
-@mark.headers
+@mark.headersPage
 @mark.usefixtures("configuration", "browser_webdriver")
 class TestsHeadersdPage:
     def test_github_icon(self, github_login):
