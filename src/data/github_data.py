@@ -13,5 +13,6 @@ class Github_data:
     forgot_password_page_title = "Forgot your password? · GitHub"
 
     login_page_url = "https://github.com/login"
-    home_page_url = login_url = "https://github.com/"
+    home_page_url = "https://github.com/"
     forgot_password_url = "https://github.com/password_reset"
+    pull_requests_url = "https://github.com/pulls"
