@@ -24,7 +24,7 @@ class BasePage(object):
         """
         Method waits for ulr change.
         Args:
-            url: Url to be changed
+            url: Url supposed to change
         """
         wait = WebDriverWait(self.driver, timeout)
         wait.until(lambda driver: driver.current_url != url)

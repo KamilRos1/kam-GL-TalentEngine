@@ -29,14 +29,18 @@ pytest
 ```
 To execute tests in specific browser use ```--browser``` flag
  ```
-pytest -- browser=firefox
+pytest --browser=firefox
 ```
 Available browsers:
 - chrome
 - firefox
 - edge
-
 If browser flag not added, tests will be executed in Chrome
+
+To run multiple tests at once use ```-n``` flag
+For example: ```pytest -n3``` will execute tests using 3 CPUs
+To run tests with all available CPUs use ```-n auto```
+
 
 ## Before commit
 Sort and format your code using 
