@@ -1,6 +1,6 @@
 from pytest import mark
 
-from src.applications.github_ui import GithubUi
+from src.page_objects.github_home_page import GithubHomePage
 from src.data.github_data import Github_data
 
 
@@ -8,14 +8,14 @@ from src.data.github_data import Github_data
 @mark.usefixtures("configuration", "browser_webdriver")
 class TestsGithubLogin:
     def test_homepage(self):
-        home_page = GithubUi(
+        home_page = GithubHomePage(
             url=self.config.conf_dict["URL_GITHUB_UI"], driver=self.driver
         )
         home_page.go_to_home()
         assert self.driver.title == Github_data.home_page_title
 
     def test_login_positive(self):
-        home_page = GithubUi(
+        home_page = GithubHomePage(
             url=self.config.conf_dict["URL_GITHUB_UI"], driver=self.driver
         )
         home_page.go_to_login()
@@ -26,7 +26,7 @@ class TestsGithubLogin:
         assert self.driver.title == Github_data.logged_title
 
     def test_login_negative(self):
-        home_page = GithubUi(
+        home_page = GithubHomePage(
             url=self.config.conf_dict["URL_GITHUB_UI"], driver=self.driver
         )
         home_page.go_to_login()

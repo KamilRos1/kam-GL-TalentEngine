@@ -1,9 +1,8 @@
 from selenium.webdriver.common.by import By
-
 from src.base.base_element import BaseElement
 
 
-class GithubUi:
+class GithubHomePage:
     def __init__(self, url, driver) -> None:
         self.url = url
         self.driver = driver
