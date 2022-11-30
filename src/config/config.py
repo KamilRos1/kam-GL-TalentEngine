@@ -1,7 +1,7 @@
 import sys
 from typing import Any
 
-sys.path.append("C:/Users/kamil.roslan/Desktop/kam-GL-TalentEngine")
+sys.path.append("home/kamros/Desktop/kam-GL-TalentEngine")
 from src.providers.JSONConfigProvider import JSONConfigProvider
 from src.providers.OSConfigProvider import OSConfigProvider
 
@@ -24,6 +24,7 @@ class Config:
         self._register("GITHUB_LOGIN")
         self._register("GITHUB_PASSWORD")
         self._register("URL_GITHUB_UI")
+        self._register("SELENIUM_GRID_URL")
 
     def get(self, item_name: str) -> Any:
         """
@@ -31,7 +32,7 @@ class Config:
         Args:
             item_name - key to search
         Returns:
-            Value of item_name
+            Value of item_namew
         """
         return self.conf_dict[item_name]
 
