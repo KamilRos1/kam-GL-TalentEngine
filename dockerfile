@@ -8,4 +8,4 @@ RUN pip3 install -r requirements.txt
 COPY . /code/
 ENV PYTHONPATH /code
 ENTRYPOINT [ "pytest" ]
-CMD [ "-s", "-m loginPage" ]
+CMD [ "-s", "--browser=remote_chrome" ]
