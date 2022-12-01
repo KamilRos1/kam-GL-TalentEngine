@@ -55,9 +55,9 @@ def pytest_addoption(parser):
     parser.addoption(
         "--browser",
         action="store",
-        choices=["chrome", "firefox", "edge"],
+        choices=["chrome", "firefox", "edge", "remote_chrome", "remote_firefox"],
         default="chrome",
-        help="Use Chrome, Firefox or Edge browser",
+        help="Use Chrome(possible remote Chrome), Firefox(possible remote Firefox) or Edge browser",
     )
 
 

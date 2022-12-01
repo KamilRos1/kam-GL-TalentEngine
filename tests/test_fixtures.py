@@ -3,6 +3,7 @@ import pytest
 from src.config.config import config
 
 
+@pytest.mark.skip(reason="temporary disabled")
 @pytest.mark.fixtureTests
 @pytest.mark.usefixtures("execution_time", "configuration")
 class TestsFixtures:
